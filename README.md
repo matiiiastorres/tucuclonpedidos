@@ -1,332 +1,450 @@
-# DeliveryApp
+# 🚀 DeliveryApp - Complete Delivery Platform
 
-## Frontend
+A comprehensive delivery application similar to Uber Eats/Rappi built with Next.js 14, Node.js, Express, MongoDB, and TypeScript. Features include real-time order tracking, multi-role authentication, shopping cart, reviews, coupons, and admin dashboards.
 
-Frontend de la aplicación de delivery construido con Next.js 14, TypeScript y Tailwind CSS.
+## 📋 Table of Contents
 
-## 🚀 Características
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Running the Application](#-running-the-application)
+- [API Documentation](#-api-documentation)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-- **Next.js 14** con App Router
-- **TypeScript** para type safety
-- **Tailwind CSS** para estilos
-- **shadcn/ui** para componentes
-- **Axios** para llamadas a la API
-- **Socket.IO** para tiempo real
-- **Context API** para estado global
-- **Responsive Design** mobile-first
+## ✨ Features
 
-## 📋 Requisitos
+### 🛍️ Customer Features
+- **User Authentication**: Register, login, profile management
+- **Store Discovery**: Browse stores by category, location, ratings
+- **Product Catalog**: Search and filter products with advanced filters
+- **Shopping Cart**: Persistent cart with customizations and add-ons
+- **Checkout**: Multiple payment methods, delivery scheduling
+- **Order Tracking**: Real-time order status updates with map integration
+- **Reviews & Ratings**: Rate orders and stores, view reviews
+- **Favorites**: Save favorite stores and products
+- **Coupons & Loyalty**: Apply discount coupons, earn loyalty points
+- **Address Management**: Multiple delivery addresses
+- **Order History**: Complete order history with reorder functionality
 
-- Node.js >= 16.0.0
-- npm o yarn
-- Backend API ejecutándose en puerto 5000
+### 🏪 Store Owner Features
+- **Store Management**: Complete store profile and settings
+- **Product Management**: Add, edit, manage product catalog
+- **Order Management**: Accept, track, and fulfill orders
+- **Analytics Dashboard**: Sales metrics, performance insights
+- **Reviews Management**: Respond to customer reviews
+- **Coupon Creation**: Create and manage store-specific coupons
+- **Business Hours**: Set operating hours and availability
+- **Delivery Zone**: Configure delivery areas and fees
 
-## 🛠 Instalación
+### 👨‍💼 Admin Features
+- **User Management**: Manage all users, roles, and permissions
+- **Store Approval**: Review and approve new store registrations
+- **Order Oversight**: Monitor all orders across the platform
+- **Analytics**: Platform-wide statistics and insights
+- **Content Management**: Manage categories, featured content
+- **System Settings**: Configure platform settings and features
 
-1. **Instalar dependencias**
-\`\`\`bash
+### 🚛 Additional Features
+- **Real-time Updates**: WebSocket integration for live order tracking
+- **Mobile Responsive**: Optimized for all devices
+- **Dark Mode**: Theme switching capability
+- **PWA Support**: Progressive Web App features
+- **Push Notifications**: Real-time notifications
+- **Multi-language**: Internationalization support
+- **SEO Optimized**: Meta tags, structured data
+- **Performance**: Optimized images, lazy loading, caching
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Framework**: Next.js 14+ with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI, shadcn/ui
+- **State Management**: Zustand
+- **Forms**: React Hook Form + Zod validation
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **HTTP Client**: Axios
+- **Real-time**: Socket.IO Client
+
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Language**: JavaScript
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT
+- **Real-time**: Socket.IO
+- **File Upload**: Multer + Cloudinary
+- **Email**: Nodemailer
+- **Payment**: Stripe, PayPal
+- **Security**: Helmet, CORS, Rate Limiting
+- **Validation**: Express Validator
+
+### DevOps & Deployment
+- **Frontend Deployment**: Netlify, Vercel
+- **Backend Deployment**: Railway, Render, Heroku
+- **Database**: MongoDB Atlas
+- **File Storage**: Cloudinary
+- **Monitoring**: Built-in health checks
+- **Environment**: Docker support
+
+## 📁 Project Structure
+
+```
+delivery-app/
+├── frontend/                 # Next.js frontend application
+│   ├── app/                 # App Router pages
+│   ├── components/          # Reusable UI components
+│   ├── lib/                 # Utility libraries
+│   ├── stores/              # Zustand state stores
+│   ├── services/            # API services
+│   ├── types/               # TypeScript type definitions
+│   ├── hooks/               # Custom React hooks
+│   ├── utils/               # Utility functions
+│   ├── public/              # Static assets
+│   └── package.json         # Frontend dependencies
+│
+├── backend/                 # Node.js backend application
+│   ├── models/              # Mongoose database models
+│   ├── routes/              # Express API routes
+│   ├── middleware/          # Custom middleware
+│   ├── services/            # Business logic services
+│   ├── utils/               # Utility functions
+│   ├── config/              # Configuration files
+│   ├── scripts/             # Database seeds and scripts
+│   ├── uploads/             # File upload directory
+│   ├── server.js            # Application entry point
+│   └── package.json         # Backend dependencies
+│
+├── docs/                    # Documentation
+├── .gitignore               # Git ignore rules
+└── README.md                # Project documentation
+```
+
+## 📋 Prerequisites
+
+Before running this application, make sure you have the following installed:
+
+- **Node.js** (v16.0.0 or higher)
+- **npm** or **yarn**
+- **MongoDB** (local installation or MongoDB Atlas)
+- **Git**
+
+## 🚀 Installation
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd delivery-app
+```
+
+### 2. Install Backend Dependencies
+```bash
+cd backend
 npm install
-\`\`\`
+```
 
-2. **Configurar variables de entorno**
-\`\`\`bash
+### 3. Install Frontend Dependencies
+```bash
+cd ../frontend
+npm install
+```
+
+## ⚙️ Configuration
+
+### Backend Configuration
+
+1. **Create Environment File**
+```bash
+cd backend
+cp .env.example .env
+```
+
+2. **Update Environment Variables**
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/delivery-app
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key
+
+# Email Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+
+# Payment Integration
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+PAYPAL_CLIENT_SECRET=your_paypal_client_secret
+
+# Cloudinary (Image Upload)
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
+
+### Frontend Configuration
+
+1. **Create Environment File**
+```bash
+cd frontend
 cp .env.local.example .env.local
-\`\`\`
+```
 
-Editar `.env.local`:
-\`\`\`env
+2. **Update Environment Variables**
+```env
+# API Configuration
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
 NEXT_PUBLIC_SOCKET_URL=http://localhost:5000
-\`\`\`
 
-3. **Iniciar el servidor de desarrollo**
-\`\`\`bash
-npm run dev
-\`\`\`
+# Payment Integration
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=your_paypal_client_id
 
-4. **Abrir en el navegador**
-\`\`\`
-http://localhost:3000
-\`\`\`
+# Google Maps
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+```
 
-## 📱 Funcionalidades
+## 🏃‍♂️ Running the Application
 
-### **Para Clientes**
-- Registro e inicio de sesión
-- Búsqueda de tiendas por ubicación
-- Navegación por categorías
-- Carrito de compras
-- Checkout y pagos
-- Seguimiento de pedidos en tiempo real
-- Historial de pedidos
-- Calificaciones y reseñas
+### Development Mode
 
-### **Para Dueños de Tienda**
-- Panel de administración de tienda
-- Gestión de productos
-- Gestión de pedidos
-- Estadísticas de ventas
-
-### **Para Administradores**
-- Panel de administración completo
-- Gestión de usuarios y tiendas
-- Estadísticas generales
-
-## 🏗 Estructura del Proyecto
-
-\`\`\`
-├── app/                 # App Router pages
-├── components/          # Componentes reutilizables
-├── context/            # Context providers
-├── hooks/              # Custom hooks
-├── lib/                # Utilidades y configuración
-├── public/             # Archivos estáticos
-└── types/              # Definiciones de tipos
-\`\`\`
-
-## 🔧 Scripts Disponibles
-
-\`\`\`bash
-npm run dev          # Desarrollo
-npm run build        # Build para producción
-npm run start        # Iniciar en producción
-npm run lint         # Linter
-\`\`\`
-
-## 🌐 Despliegue
-
-### Vercel (Recomendado)
-\`\`\`bash
-npm install -g vercel
-vercel
-\`\`\`
-
-### Netlify
-1. Build command: `npm run build`
-2. Publish directory: `out`
-3. Configurar variables de entorno
-
-## Backend
-
-Backend completo para aplicación de delivery estilo Uber Eats/Rappi construido con Node.js, Express y MongoDB.
-
-## 🚀 Características
-
-- **Autenticación JWT** con roles (Cliente, Dueño de tienda, Admin, Repartidor)
-- **API RESTful** completa
-- **WebSockets** para actualizaciones en tiempo real
-- **Validación** robusta con express-validator
-- **Seguridad** con helmet, rate limiting y CORS
-- **Base de datos** MongoDB con Mongoose
-- **Subida de archivos** con Multer
-
-## 📋 Requisitos
-
-- Node.js >= 16.0.0
-- MongoDB >= 4.4
-- npm o yarn
-
-## 🛠 Instalación
-
-1. **Instalar dependencias**
-\`\`\`bash
-npm install
-\`\`\`
-
-2. **Configurar variables de entorno**
-\`\`\`bash
-cp .env.example .env
-\`\`\`
-
-Editar `.env` con tus configuraciones:
-\`\`\`env
-NODE_ENV=development
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/delivery-app
-JWT_SECRET=your-super-secret-jwt-key
-FRONTEND_URL=http://localhost:3000
-\`\`\`
-
-3. **Iniciar MongoDB**
-\`\`\`bash
-# Con Docker
-docker run -d -p 27017:27017 --name mongodb mongo:latest
-
-# O instalar localmente
+1. **Start MongoDB** (if running locally)
+```bash
 mongod
-\`\`\`
+```
 
-4. **Poblar la base de datos**
-\`\`\`bash
-npm run seed
-\`\`\`
-
-5. **Iniciar el servidor**
-\`\`\`bash
-# Desarrollo
+2. **Start Backend Server**
+```bash
+cd backend
 npm run dev
+```
+Backend will be available at `http://localhost:5000`
 
-# Producción
+3. **Start Frontend Application**
+```bash
+cd frontend
+npm run dev
+```
+Frontend will be available at `http://localhost:3000`
+
+### Production Mode
+
+1. **Build Frontend**
+```bash
+cd frontend
+npm run build
 npm start
-\`\`\`
+```
 
-## 📚 API Endpoints
+2. **Start Backend**
+```bash
+cd backend
+npm start
+```
 
-### Autenticación
-- `POST /api/auth/register` - Registrar usuario
-- `POST /api/auth/login` - Iniciar sesión
-- `GET /api/auth/me` - Obtener usuario actual
-- `PUT /api/auth/profile` - Actualizar perfil
-- `POST /api/auth/logout` - Cerrar sesión
+### Using Docker (Optional)
 
-### Tiendas
-- `GET /api/stores` - Listar tiendas
-- `GET /api/stores/featured/list` - Tiendas destacadas
+1. **Backend with Docker**
+```bash
+cd backend
+docker build -t delivery-backend .
+docker run -p 5000:5000 delivery-backend
+```
 
-### Usuarios
-- `GET /api/users/profile` - Perfil del usuario
+2. **Frontend with Docker**
+```bash
+cd frontend
+docker build -t delivery-frontend .
+docker run -p 3000:3000 delivery-frontend
+```
 
-### Pedidos
-- `GET /api/orders` - Listar pedidos del usuario
+## 🗄️ Database Setup
 
-### Categorías
-- `GET /api/categories` - Listar categorías
+### Seed Database with Sample Data
+```bash
+cd backend
+npm run seed
+```
 
-### Ubicación
-- `POST /api/location/geocode` - Geocodificar dirección
+This will create:
+- Sample categories (Restaurants, Grocery, Pharmacy, etc.)
+- Demo stores with products
+- Test users with different roles
+- Sample orders and reviews
 
-### Administración
-- `GET /api/admin/dashboard` - Dashboard de admin (Solo Admin)
+### Default Test Accounts
+After seeding, you can use these accounts:
 
-### Subida de archivos
-- `POST /api/upload/single` - Subir archivo único
+**Admin Account:**
+- Email: `admin@deliveryapp.com`
+- Password: `password123`
 
-### Health Check
-- `GET /api/health` - Estado del servidor
+**Store Owner Account:**
+- Email: `store@deliveryapp.com`
+- Password: `password123`
 
-## 🗄 Modelos de Datos
+**Customer Account:**
+- Email: `customer@deliveryapp.com`
+- Password: `password123`
 
-### Usuario
-\`\`\`javascript
-{
-  name: String,
-  email: String,
-  password: String,
-  role: ['client', 'store_owner', 'admin', 'delivery_driver'],
-  addresses: [AddressSchema],
-  favoriteStores: [ObjectId],
-  loyaltyPoints: Number
-}
-\`\`\`
+## 📚 API Documentation
 
-## 🔐 Autenticación
+### Authentication Endpoints
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - User login
+- `GET /api/auth/me` - Get current user profile
+- `PUT /api/auth/profile` - Update user profile
 
-El sistema usa JWT tokens para autenticación. Incluir el token en el header:
+### Store Endpoints
+- `GET /api/stores` - Get all stores
+- `GET /api/stores/:id` - Get store details
+- `GET /api/stores/featured/list` - Get featured stores
+- `GET /api/stores/:id/products` - Get store products
 
-\`\`\`
-Authorization: Bearer <token>
-\`\`\`
+### Cart & Orders
+- `GET /api/cart/:storeId` - Get user cart
+- `POST /api/cart/:storeId/items` - Add item to cart
+- `POST /api/orders` - Create new order
+- `GET /api/orders` - Get user orders
 
-### Roles disponibles:
-- **client**: Puede hacer pedidos
-- **store_owner**: Puede gestionar su tienda y productos
-- **admin**: Acceso completo al sistema
-- **delivery_driver**: Puede actualizar estados de entrega
+### Reviews & Ratings
+- `POST /api/reviews` - Create review
+- `GET /api/reviews/store/:storeId` - Get store reviews
 
-## 🧪 Datos de Prueba
+### Admin Endpoints
+- `GET /api/admin/dashboard` - Admin dashboard stats
+- `GET /api/admin/users` - Manage users
+- `GET /api/admin/stores` - Manage stores
 
-Después de ejecutar `npm run seed`:
+For complete API documentation, visit: `http://localhost:5000/api/health`
 
-\`\`\`
-Admin: admin@delivery.com / password123
-Cliente: client@delivery.com / password123
-Tienda: store@delivery.com / password123
-\`\`\`
+## 🚀 Deployment
 
-## 📡 WebSockets
+### Frontend Deployment (Netlify)
 
-Eventos en tiempo real:
-- `new-order`: Nueva orden para la tienda
-- `order-status-updated`: Actualización de estado
-- `order-cancelled`: Pedido cancelado
+1. **Build for Production**
+```bash
+cd frontend
+npm run build
+npm run export
+```
 
-\`\`\`javascript
-// Cliente se une a sala de pedido
-socket.emit('join-order', orderId);
+2. **Deploy to Netlify**
+- Connect your repository to Netlify
+- Set build command: `npm run build && npm run export`
+- Set publish directory: `out`
+- Configure environment variables
 
-// Tienda se une a su sala
-socket.emit('join-store', storeId);
-\`\`\`
+### Backend Deployment (Railway)
 
-## 🚀 Despliegue
+1. **Prepare for Deployment**
+```bash
+cd backend
+```
 
-### Railway
-\`\`\`bash
-# Instalar Railway CLI
-npm install -g @railway/cli
+2. **Deploy to Railway**
+- Install Railway CLI: `npm install -g @railway/cli`
+- Login: `railway login`
+- Initialize: `railway init`
+- Deploy: `railway up`
+- Set environment variables in Railway dashboard
 
-# Login y deploy
-railway login
-railway init
-railway up
-\`\`\`
+### Environment Variables for Production
 
-### Render
-1. Conectar repositorio en Render
-2. Configurar variables de entorno
-3. Deploy automático
-
-### Variables de entorno para producción:
-\`\`\`env
+**Backend (.env):**
+```env
 NODE_ENV=production
-MONGODB_URI=mongodb+srv://...
-JWT_SECRET=production-secret
-FRONTEND_URL=https://your-frontend.vercel.app
-\`\`\`
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/delivery-app
+JWT_SECRET=production-secret-key
+FRONTEND_URL=https://your-frontend-domain.netlify.app
+```
 
-## 📊 Monitoreo
+**Frontend (.env.local):**
+```env
+NEXT_PUBLIC_API_URL=https://your-backend-domain.railway.app/api
+NEXT_PUBLIC_SOCKET_URL=https://your-backend-domain.railway.app
+```
 
-### Health Check
-\`\`\`bash
-GET /api/health
-\`\`\`
+## 🧪 Testing
 
-Respuesta:
-\`\`\`json
-{
-  "status": "OK",
-  "timestamp": "2024-01-15T10:30:00.000Z",
-  "uptime": 3600
-}
-\`\`\`
+### Backend Tests
+```bash
+cd backend
+npm test
+```
 
-## 🔧 Desarrollo
+### Frontend Tests
+```bash
+cd frontend
+npm test
+```
 
-### Estructura del proyecto
-\`\`\`
-├── models/          # Modelos de Mongoose
-├── routes/          # Rutas de la API
-├── middleware/      # Middleware personalizado
-├── scripts/         # Scripts de utilidad
-├── uploads/         # Archivos subidos
-└── server.js        # Punto de entrada
-\`\`\`
+### E2E Tests
+```bash
+cd frontend
+npm run test:e2e
+```
 
-### Comandos útiles
-\`\`\`bash
-npm run dev          # Desarrollo con nodemon
-npm run seed         # Poblar base de datos
-npm test             # Ejecutar tests
-\`\`\`
+## 🔧 Development
 
-## 🤝 Contribuir
+### Code Style
+- ESLint and Prettier configured
+- Run `npm run lint` to check code style
+- Run `npm run lint:fix` to auto-fix issues
 
-1. Fork el proyecto
-2. Crear rama feature (`git checkout -b feature/AmazingFeature`)
-3. Commit cambios (`git commit -m 'Add AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir Pull Request
+### Git Hooks
+- Pre-commit hooks run linting and tests
+- Conventional commit messages enforced
 
-## 📄 Licencia
+### Environment Setup
+1. Install recommended VS Code extensions
+2. Configure ESLint and Prettier
+3. Set up debugging configurations
 
-Este proyecto está bajo la Licencia MIT.
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/your-repo/issues) page
+2. Read the documentation thoroughly
+3. Create a new issue with detailed information
+
+## 🎯 Roadmap
+
+- [ ] Mobile apps (React Native)
+- [ ] Advanced analytics dashboard
+- [ ] Multi-language support
+- [ ] Voice ordering
+- [ ] AI-powered recommendations
+- [ ] Delivery driver mobile app
+- [ ] Integration with third-party delivery services
+
+## 🙏 Acknowledgments
+
+- Built with modern web technologies
+- Inspired by leading delivery platforms
+- Community contributions welcome
+
+---
+
+**Happy Coding! 🚀**
